@@ -1,3 +1,4 @@
+using System.Linq;
 using Autenticacaoefcookie.Models;
 
 namespace Autenticacaoefcookie.Dados
@@ -7,6 +8,8 @@ namespace Autenticacaoefcookie.Dados
         public static void Inicializar(AutenticacaoContext contexto)
         {
             contexto.Database.EnsureCreated();
+
+            if(contexto.Usuarios.Any()) return;
 
             var usuario = new Usuario()
             {
