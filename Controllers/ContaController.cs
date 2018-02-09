@@ -37,6 +37,11 @@ namespace Autenticacaoefcookie.Controllers
                     claims.Add(new Claim(ClaimTypes.Name, user.Nome));
                     claims.Add(new Claim(ClaimTypes.Sid, user.IdUsuario.ToString()));
 
+                    foreach(var item in user.UsuariosPermissoes)
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, item.Permissao.Nome));
+                    }
+
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
