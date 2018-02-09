@@ -50,5 +50,12 @@ namespace Autenticacaoefcookie.Controllers
                 return View(usuario);
             }
         }
+        [HttpGet]
+        public IActionResult Sair()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Login");
+        }
     }
 }
